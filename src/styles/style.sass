@@ -92,6 +92,7 @@ img
         border: 1px solid $light_grey
         padding-left: 1rem
         outline: none
+        transition: border 0.2s ease-in-out
         &::placeholder
             font-weight: 700
         &:focus
@@ -113,11 +114,12 @@ img
     color: $light_red
     max-height: 0
     overflow: hidden
-    transition: max-height 0.2s ease-in-out
-    &[empty=""]
-        max-height: fit-content
+    opacity: 0
+    transition: opacity 0.2s ease-in-out
     &[invalid=""]
         max-height: fit-content
+        opacity: 1
+        overflow: auto
 
 .arrow_container
     position: relative
@@ -178,6 +180,9 @@ img
             margin-bottom: -2rem
     .age_calculation
         color: $purple
+        &[finished='']
+            letter-spacing: 0px
+            margin-right: -2px
 
 @media screen and (min-width: 600px)
     .age_calculation_container 
