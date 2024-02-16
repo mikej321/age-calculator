@@ -124,8 +124,7 @@ class User {
     lessened (an edge case)*/
     
     if (diffDisplayDays < 0) {
-      const tempDate = new Date(differences.todayYear, differences.todayMonth);
-      diffDisplayDays += tempDate.getDate();
+      diffDisplayDays += (1 + 30);
       diffDisplayMonths--;
     }
     
