@@ -100,6 +100,14 @@ img
         &[error=""]
             border: 1px solid $light_red
 
+.input_container input::-webkit-outer-spin-button,
+.input_container input::-webkit-inner-spin-button
+    -webkit-appearance: none
+    margin: 0
+
+input[type="number"]
+    -moz-appearance: textfield // firefox
+
 @media screen and (min-width: 600px)
     .input_container input
         max-width: 10rem

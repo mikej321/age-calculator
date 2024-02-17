@@ -1,12 +1,13 @@
 import "./styles/style.sass";
 import { format, subDays, subMonths, subYears} from "date-fns";
 
+const inputs = document.querySelectorAll('input[type="number"]');
 const ageDay = document.querySelector("#ageDay");
 const errorDay = document.querySelector(".error_day");
 const ageMonth = document.querySelector("#ageMonth");
 const arrow = document.querySelector(".arrow");
-const day30Regex = /(?=^0?[0-9]$|^[1-2][0-9]?$|^30$).*/;
-const day31Regex = /(?=^[1-2][0-9]?$|^3[0-1]$).*/;
+const day30Regex = /(?=^0?[1-9]$|^[1-2][0-9]?$|^30$).*/;
+const day31Regex = /(?=^0?[1-9]$|^[1-2][0-9]?$|^3[0-1]$).*/;
 const errorMonth = document.querySelector(".error_month");
 const ageYear = document.querySelector("#ageYear");
 const errorYear = document.querySelector(".error_year");
@@ -15,6 +16,9 @@ const februaryRegularRegex = /(?=^[1-2][0-8]?$).*/;
 const februaryLeapRegex = /(?=^[1-2][0-9]?$).*/;
 const yearRegex = /(?=^19[3-9][0-9]$|^20[0-1][0-9]$|^202[0-4]$).*/;
 const monthRegex = /(?=^0?[1-9]$|^1[0-2]$).*/;
+
+// regexes for inputs
+
 
 // How long you want the animation to take, in ms
 const animationDuration = 2000;
@@ -84,7 +88,6 @@ class User {
   calculateAgeDifference() {
     const today = new Date();
     const userDate = new Date(this.userYear, this.userMonth - 1, this.userDay);
-    console.log(today)
     
     let todayDay = today.getDate();
     let userDay = userDate.getDate();
@@ -141,7 +144,6 @@ class User {
     const diffYears = document.querySelector('.diff_years');
 
     const differences = this.calculatePageContent();
-    console.log(differences.diffDisplayDays, differences.diffDisplayMonths, differences.diffDisplayYear)
     /* changes the display on the page by adding attributes to the containers
     holding the values and changing text content */
   
@@ -256,6 +258,12 @@ function checkDay() {
       errorDay.setAttribute("invalid", "");
       return false;
     }
+  } else if (ageMonth.value == "") {
+      ageDay.previousElementSibling.setAttribute("error", "");
+      ageDay.setAttribute("error", "");
+      errorDay.textContent = "Month needed";
+      errorDay.setAttribute("invalid", "");
+      return false;
   }
 }
 
@@ -378,5 +386,15 @@ function displayAgeDifference() {
       console.log(err);
   }
 }
+
+const allowedRegex = /[0-9]+/
+
+inputs.forEach((input) => {
+  input.addEventListener('keypress', event => {
+    if (!allowedRegex.test(event.key)) {
+      event.preventDefault();
+    }
+  })
+})
 
 arrow.addEventListener("click", displayAgeDifference);
