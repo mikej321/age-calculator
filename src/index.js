@@ -5,7 +5,7 @@ const ageDay = document.querySelector("#ageDay");
 const errorDay = document.querySelector(".error_day");
 const ageMonth = document.querySelector("#ageMonth");
 const arrow = document.querySelector(".arrow");
-const day30Regex = /(?=^[1-2][0-9]?$|^30$).*/;
+const day30Regex = /(?=^0?[0-9]$|^[1-2][0-9]?$|^30$).*/;
 const day31Regex = /(?=^[1-2][0-9]?$|^3[0-1]$).*/;
 const errorMonth = document.querySelector(".error_month");
 const ageYear = document.querySelector("#ageYear");
